@@ -1,16 +1,3 @@
-board = [
-    [0, 0, 0, 5, 3, 4, 0, 0, 8],
-    [0, 0, 3, 6, 0, 0, 0, 5, 0],
-    [5, 0, 0, 0, 1, 0, 0, 0, 4],
-    [0, 7, 0, 0, 0, 0, 5, 2, 0],
-    [9, 0, 0, 0, 2, 0, 0, 0, 1],
-    [3, 0, 2, 0, 0, 0, 0, 8, 0],
-    [8, 0, 0, 0, 6, 0, 0, 0, 5],
-    [0, 3, 5, 0, 0, 8, 7, 0, 0],
-    [7, 0, 0, 1, 5, 0, 8, 0, 3]
-]
-
-
 def solve(bo):
     find = find_empty(bo)
     if not find:
@@ -31,6 +18,9 @@ def solve(bo):
 
 
 def valid(bo, num, pos):
+    """
+    :param
+    """
     # Check row
     for i in range(len(bo[0])):
         if bo[pos[0]][i] == num and pos[1] != i:
@@ -77,7 +67,35 @@ def find_empty(bo):
     return None
 
 
+def give_board(bo):
+    press = input("Press 0: Create a board by yourself\nPress 1: Default board\nUser: ")
+
+    if press == "0":
+        bo = []
+        print("Use a space between numbers.")
+        for i in range(1, 10):
+            print("Line", i, ":", end='\n')
+            line_str = input().split()
+
+            line_int = list(map(int, line_str))
+
+            bo.append(line_int)
+    return bo
+
+
 if __name__ == "__main__":
+    board = [
+        [0, 0, 0, 5, 3, 4, 0, 0, 8],
+        [0, 0, 3, 6, 0, 0, 0, 5, 0],
+        [5, 0, 0, 0, 1, 0, 0, 0, 4],
+        [0, 7, 0, 0, 0, 0, 5, 2, 0],
+        [9, 0, 0, 0, 2, 0, 0, 0, 1],
+        [3, 0, 2, 0, 0, 0, 0, 8, 0],
+        [8, 0, 0, 0, 6, 0, 0, 0, 5],
+        [0, 3, 5, 0, 0, 8, 7, 0, 0],
+        [7, 0, 0, 1, 5, 0, 8, 0, 3]
+    ]
+    give_board(board)
     print_board(board)
     solve(board)
     print("************************")
