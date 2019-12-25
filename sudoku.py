@@ -76,11 +76,28 @@ def give_board(bo):
         for i in range(1, 10):
             print("Line", i, ":", end='\n')
             line_str = input().split()
-
-            line_int = list(map(int, line_str))
-
-            bo.append(line_int)
+            if check_line(line_str) is True:
+                line_int = list(map(int, line_str))
+                bo.append(line_int)
+            else:
+                return bo
     return bo
+
+
+def check_line(li):
+    li = li.replace(" ", "")
+    if li.isditgit() is True and len(li) == 9:
+        return True
+    return False
+
+
+def check_board(bo):
+    for i in range(len(bo)):
+        for j in range(len(bo[0])):
+            if bo[i][j] != 0:
+                if valid(bo, bo[i][j], (i, j)) is False:
+                    return False
+    return True
 
 
 if __name__ == "__main__":
