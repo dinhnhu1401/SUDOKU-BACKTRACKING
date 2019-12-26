@@ -10,6 +10,8 @@ The puzzle setter provides a partially completed grid, which for a well-posed pu
 
 You can search more about the rules on the internet, even you can try a little at game online website.
 
+The link below will help you to generate the valid board and give you its answer.
+
 [Play SODUKU Now!](https://www.sudoku-solutions.com/)
 
 
@@ -84,32 +86,52 @@ Into this:
 7 0 0 | 1 5 0 | 8 0 3
 
 ```
-
-
-
-(continue)
-
-
+- We need functions:
+    - To validate and print the board.
+    - To pick a number for a cell (increasing). 
+    - To validate each cell with its vertical, horizontal, diagonal direction)
 
  
-# Solution and related skills:
+# Solution and related skills/knowledge:
 
 ## Solution:
 
+- Browse for an empty cell.
 
-## Ralated skills:
+- If the empty cell don't exist => return True (Finish solving)
+    
+   else => note this cell
+ 
+- Pick a number from 1 to 9 into this cell and validate it.
+    - If it is the valid cell => assign the number into the current position of the board.
+    - If **the problem is solved** (Repeat recursively all the steps above)=> return True (Finish solving)
+    - Assign the current position by zero (back-track step)
+- Return False (break out the program and can't find a solution)
 
-- Use **collections** import *defaultdict*
-- Use **itertools**
-  
+## Related skills/knowledge:
+
+- **Recursive**
+    
+    `In recursion function calls itself until reaches a base case.` - stackoverflow.com
+    
+- **Back-tracking idea** (like DFS when searching in tree)
+    `In back-tracking you use recursion in order to explore all the possibilities until you get the best result for the problem` - - stackoverflow.com
+
+```
+Recursion is an algorithm structure, backtracking is an algorithm idea.
+
+Back-tracking is an approach to solve certain kind of problems.
+Common examples would be : N-Queens, Sudoku etc.
+Recursion is used to implement an algorithm that back-tracks.
+```
 # Coding Journey
 
 | Day        | Duration   |Describe Stuck or A done feature      |Cause or Result       |
 |------------|------------|--------------------------------------|----------------------|
 | 23/12/2019 | 3h         | Thinking and researching             | ....                 |
-| 24/12/2019 | 2h         | Write README. md                     | Basic structure      |
-| 23/12/2019 | 3h         | ....                                 | ....                 |
-| 23/12/2019 | 3h         | ....                                 | ....                 |
+| 24/12/2019 | ...        | Write README.md and coding           | Basic structure      |
+| 25/12/2019 | 3h         | Write func allow user to fill the board           | Func: give  board                |
+| 26/12/2019 | 3h         | Complete the validate of the given board by user. | Func: check board and check line |
+| 26/12/2019 | 2h         | add solutions and knowledge into README | Done - Ver 1.0.0
 
-
-@TECHWITHTIM
+@TechWithTim
