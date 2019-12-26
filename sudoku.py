@@ -1,4 +1,11 @@
 def solve(bo):
+    """
+    :param bo: The board
+    :type bo: 2D matrix - list in list
+    :return: boolean
+
+    @description: Use recursion to explore the solution
+    """
     find = find_empty(bo)
     if not find:
         return True
@@ -6,7 +13,7 @@ def solve(bo):
         row, col = find
 
     for i in range(1, 10):
-        if valid(bo, i, (row, col)):
+        if validate_cell(bo, i, (row, col)):
             bo[row][col] = i
 
             if solve(bo):
@@ -17,23 +24,39 @@ def solve(bo):
     return False
 
 
-def valid(bo, num, pos):
+def validate_cell(bo, num, pos):
     """
-    :param
+    :param bo: The board
+    :type bo: 2D matrix - list in list
+
+    :param num: The number is picking for current cell.
+    :type num: int
+
+    :param pos: The position of the current cell - (row, col)
+    :type: (int, int)
+
+    :return: boolean
+
+    @description: Check if the number is duplicated.
+
     """
+
+    row = pos[0]
+    col = pos[1]
+
     # Check row
-    for i in range(len(bo[0])):
-        if bo[pos[0]][i] == num and pos[1] != i:
+    for i in range(9):
+        if bo[row][i] == num and col != i:
             return False
 
     # Check column
-    for i in range(len(bo)):
-        if bo[i][pos[1]] == num and pos[0] != i:
+    for i in range(9):
+        if bo[i][col] == num and row != i:
             return False
 
     # Check box
-    box_x = pos[1] // 3
-    box_y = pos[0] // 3
+    box_x = col // 3
+    box_y = row // 3
 
     for i in range(box_y * 3, box_y * 3 + 3):
         for j in range(box_x * 3, box_x * 3 + 3):
@@ -44,11 +67,17 @@ def valid(bo, num, pos):
 
 
 def print_board(bo):
-    for i in range(len(bo)):
+    """
+    :param bo: The board
+    :type bo: 2D matrix - list in list
+
+    @description: Print the board into the screen.
+    """
+    for i in range(9):
         if i % 3 == 0 and i != 0:
             print("----------------------")
 
-        for j in range(len(bo[0])):
+        for j in range(9):
             if j % 3 == 0 and j != 0:
                 print("| ", end="")
 
@@ -59,15 +88,60 @@ def print_board(bo):
 
 
 def find_empty(bo):
-    for i in range(len(bo)):
-        for j in range(len(bo[0])):
+    """
+    :param bo: The board
+    :type bo: 2D matrix - list in list
+
+    @description: Find the empty cell.
+    """
+    for i in range(9):
+        for j in range(9):
             if bo[i][j] == 0:
                 return i, j  # row, col
 
     return None
 
 
+def check_line(li):
+    """
+    :param li: line - each row of board
+    :type li: str
+    :return: boolean
+
+    @description: check the line includes only 9 numbers.
+    """
+    li = li.replace(" ", "")
+    if li.isdigit() is True and len(li) == 9:
+        return True
+    return False
+
+
+def check_board(bo):
+    """
+    :param bo: The board
+    :type bo: 2D matrix - list in list
+    :return: boolean
+
+    @description: validate the board
+    """
+    if len(bo) != 9:
+        return False
+
+    for i in range(len(bo)):
+        for j in range(len(bo[0])):
+            if bo[i][j] != 0:
+                if validate_cell(bo, bo[i][j], (i, j)) is False:
+                    return False
+    return True
+
+
 def give_board(bo):
+    """
+    :param bo: The board
+    :type bo: 2D matrix - list in list
+
+    @description: Allow user to give a board.
+    """
     press = input("Press 0: Create a board by yourself\nPress 1: Default board\nUser: ")
 
     if press.replace(" ", "") == "0":
@@ -84,38 +158,29 @@ def give_board(bo):
     return bo
 
 
-def check_line(li):
-    li = li.replace(" ", "")
-    if li.isdigit() is True and len(li) == 9:
-        return True
-    return False
-
-
-def check_board(bo):
-    if len(bo) != 9:
-        return False
-    if len(bo[0]) != 9:
-        return False
-    for i in range(len(bo)):
-        for j in range(len(bo[0])):
-            if bo[i][j] != 0:
-                if valid(bo, bo[i][j], (i, j)) is False:
-                    return False
-    return True
-
-
 if __name__ == "__main__":
-    default_board = [
-        [0, 0, 0, 5, 3, 4, 0, 0, 8],
-        [0, 0, 3, 6, 0, 0, 0, 5, 0],
-        [5, 0, 0, 0, 1, 0, 0, 0, 4],
-        [0, 7, 0, 0, 0, 0, 5, 2, 0],
-        [9, 0, 0, 0, 2, 0, 0, 0, 1],
-        [3, 0, 2, 0, 0, 0, 0, 8, 0],
-        [8, 0, 0, 0, 6, 0, 0, 0, 5],
-        [0, 3, 5, 0, 0, 8, 7, 0, 0],
-        [7, 0, 0, 1, 5, 0, 8, 0, 3]
-    ]
+    # default_board = [
+    #     [0, 0, 0, 5, 3, 4, 0, 0, 8],
+    #     [0, 0, 3, 6, 0, 0, 0, 5, 0],
+    #     [5, 0, 0, 0, 1, 0, 0, 0, 4],
+    #     [0, 7, 0, 0, 0, 0, 5, 2, 0],
+    #     [9, 0, 0, 0, 2, 0, 0, 0, 1],
+    #     [3, 0, 2, 0, 0, 0, 0, 8, 0],
+    #     [8, 0, 0, 0, 6, 0, 0, 0, 5],
+    #     [0, 3, 5, 0, 0, 8, 7, 0, 0],
+    #     [7, 0, 0, 1, 5, 0, 8, 0, 3]
+    # ]
+
+    default_board = [[3, 0, 6, 5, 0, 8, 4, 0, 0],
+                     [5, 2, 0, 0, 0, 0, 0, 0, 0],
+                     [0, 8, 7, 0, 0, 0, 0, 3, 1],
+                     [0, 0, 3, 0, 1, 0, 0, 8, 0],
+                     [9, 0, 0, 8, 6, 3, 0, 0, 5],
+                     [0, 5, 0, 0, 9, 0, 6, 0, 0],
+                     [1, 3, 0, 0, 0, 0, 2, 5, 0],
+                     [0, 0, 0, 0, 0, 0, 0, 7, 4],
+                     [0, 0, 5, 2, 0, 6, 3, 0, 0]]
+
     board = give_board(default_board)
     if check_board(board) is True:
         print_board(board)
