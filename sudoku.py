@@ -70,12 +70,12 @@ def find_empty(bo):
 def give_board(bo):
     press = input("Press 0: Create a board by yourself\nPress 1: Default board\nUser: ")
 
-    if press == "0":
+    if press.replace(" ", "") == "0":
         bo = []
-        print("Use a space between numbers.")
+        print("Use a space between numbers.\nPlease fill 9 numbers each line")
         for i in range(1, 10):
             print("Line", i, ":", end='\n')
-            line_str = input().split()
+            line_str = input()
             if check_line(line_str) is True:
                 line_int = list(map(int, line_str))
                 bo.append(line_int)
@@ -86,12 +86,16 @@ def give_board(bo):
 
 def check_line(li):
     li = li.replace(" ", "")
-    if li.isditgit() is True and len(li) == 9:
+    if li.isdigit() is True and len(li) == 9:
         return True
     return False
 
 
 def check_board(bo):
+    if len(bo) != 9:
+        return False
+    if len(bo[0]) != 9:
+        return False
     for i in range(len(bo)):
         for j in range(len(bo[0])):
             if bo[i][j] != 0:
@@ -101,7 +105,7 @@ def check_board(bo):
 
 
 if __name__ == "__main__":
-    board = [
+    default_board = [
         [0, 0, 0, 5, 3, 4, 0, 0, 8],
         [0, 0, 3, 6, 0, 0, 0, 5, 0],
         [5, 0, 0, 0, 1, 0, 0, 0, 4],
@@ -112,8 +116,13 @@ if __name__ == "__main__":
         [0, 3, 5, 0, 0, 8, 7, 0, 0],
         [7, 0, 0, 1, 5, 0, 8, 0, 3]
     ]
-    give_board(board)
-    print_board(board)
-    solve(board)
-    print("************************")
-    print_board(board)
+    board = give_board(default_board)
+    if check_board(board) is True:
+        print_board(board)
+        solve(board)
+        print("************************")
+        print("************************")
+        print_board(board)
+        print("Problem solved!")
+    else:
+        print("Invalid board!\nCan not execute the program!")
