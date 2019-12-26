@@ -20,7 +20,7 @@ cd SUDOKU-BACKTRACKING
 python3 sudoku.py
 ```
 
-#### A quick  on the Online Python Compiler
+#### A quick View on the Online Python Compiler
 Visit [![Run on Repl.it](https://repl.it/badge/github/dinhnhu1401/SUDOKU-BACKTRACKING)](https://repl.it/github/dinhnhu1401/SUDOKU-BACKTRACKING) and enjoy
 
 # Mission
@@ -28,9 +28,20 @@ Implement a **program** to solve the Sudoku.
 
 
 ### Input:
-The board => user fills  in
+The program will ask you if you want to set up your own board to make sure the transparency.
 
-### End condition
+Press **0**: You set up by yourself.
+
+And then the program validate your board:
+   - 9 lines
+   - 9 numbers each line
+   - right syntax
+   - unique board 
+
+Press **1**: The program will use the default board.
+
+
+### Output:
 Return the solutions of the given board. 
 
 
