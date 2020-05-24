@@ -22,9 +22,6 @@ cd SUDOKU-BACKTRACKING
 python3 sudoku.py
 ```
 
-#### A quick View on the Online Python Compiler
-Visit [![Run on Repl.it](https://repl.it/badge/github/dinhnhu1401/SUDOKU-BACKTRACKING)](https://repl.it/github/dinhnhu1401/SUDOKU-BACKTRACKING) and enjoy
-
 # Mission
 Implement a **program** to solve the Sudoku.
 
@@ -126,12 +123,12 @@ Recursion is used to implement an algorithm that back-tracks.
 ```
 # Coding Journey
 
-| Day        | Duration   |Describe Stuck or A done feature      |Cause or Result       |
-|------------|------------|--------------------------------------|----------------------|
-| 23/12/2019 | 3h         | Thinking and researching             | ....                 |
-| 24/12/2019 | ...        | Write README.md and coding           | Basic structure      |
-| 25/12/2019 | 3h         | Write func allow user to fill the board           | Func: give  board                |
-| 26/12/2019 | 3h         | Complete the validate of the given board by user. | Func: check board and check line |
-| 26/12/2019 | 2h         | add solutions and knowledge into README | Done - Ver 1.0.0
+| Note       |Describe Stuck or A done feature      |Cause or Result       |
+|------------|--------------------------------------|----------------------|
+| 1          | Thinking and researching             | ....                 |
+| 2          | Write README.md and coding           | Basic structure      |
+| 3          | Write func allow user to fill the board           | Func: give  board                |
+| 4          | Complete the validate of the given board by user. | Func: check board and check line |
+| 5          | add solutions and knowledge into README | Done - Ver 1.0.0
 
 @TechWithTim
